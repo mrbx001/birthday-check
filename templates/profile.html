@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}প্রোফাইল - Birthday Check{% endblock %}
+
+{% block content %}
+<h1>🎉 আপনার প্রোফাইল</h1>
+
+{% if is_birthday_today %}
+    <div class="birthday-today">
+        🎂 আজ আপনার জন্মদিন! অনেক অনেক শুভেচ্ছা! 🎂
+    </div>
+{% endif %}
+
+<div class="profile-info">
+    <p><strong>নাম:</strong> {{ user.full_name }}</p>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>ইমেইল:</strong> {{ user.email }}</p>
+    <p><strong>জন্মদিন:</strong> {{ user.birthday.strftime('%d-%m-%Y') }}</p>
+    <p><strong>বয়স:</strong> {{ age }} বছর</p>
+    <p><strong>অ্যাকাউন্ট তৈরি:</strong> {{ user.created_at.strftime('%d-%m-%Y %H:%M') }}</p>
+</div>
+
+<form action="{{ url_for('logout') }}" method="GET">
+    <button type="submit" class="logout-btn">লগআউট করুন</button>
+</form>
+{% endblock %}
